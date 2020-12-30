@@ -6,14 +6,37 @@
         <div style="width:25%;margin:0 1px;background:#999">預告片排序</div>
         <div style="width:25%;margin:0 1px;background:#999">操作</div>
     </div>
-    <div style="width:100%;height:200px;overflow:auto">
-    <pre>
-dfasdfs
-fdasfsdf
-finfo_set_flagsfsafsa
+    <div style="width:100%;height:200px;overflow-y:scroll;color:black">
+    <?php
+    $posters=$Poster->all();
+    foreach($posters as $poster){
+    ?>
+    <div style="width:100% ;display:flex ;align-items:center;background:white;margin:1px 0" class='ct'>
+        <div style="width:25%;margin:0 1px">
+            <img src="img/<?=$poster['img'];?>" style="width:80px">
+        </div>
+        <div style="width:25%;margin:0 1px">
+            <input type="text" name="name" value="<?=$poster['name'];?>">
+        </div>
+        <div style="width:25%;margin:0 1px">
+            <input type="button" value="往上">
+            <input type="button" value="往下">
+        </div>
+        <div style="width:25%;margin:0 1px">
+            <input type="checkbox" name="sh[]" value="<?=$poster['id'];?>" <?=($poster['sh']==1)?'checked':'';?>>顯示
+            <input type="checkbox" name="del[]" value="<?=$poster['id'];?>">刪除
+            <select name="ani[]">
+                <option value="1" <?=($poster['ani']==1)?"selected":'';?>>淡入淡出</option>
+                <option value="2" <?=($poster['ani']==2)?"selected":'';?>>滑入滑出</option>
+                <option value="3" <?=($poster['ani']==3)?"selected":'';?>>縮放</option>
+            
+            </select>
+        </div>
+    </div>
+    <?php    
+    }
 
-
-    </pre>
+    ?>
     </div>
     <div class="ct">
         <input type="submit" value="編輯確定"><input type="reset" value="重置">

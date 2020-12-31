@@ -13,6 +13,9 @@
       <h1>院線片清單</h1>
       <div class="rb tab" style="width:95%;display:flex;flex-wrap:wrap">
       <?php
+      
+
+
       $movies=$Movie->all(['sh'=>1]," order by rank");
       
       foreach($movies as $movie){

@@ -25,10 +25,10 @@
       <div style="width:48%;border:1px solid #ccc;margin:0.5%">
           <div>片名:<?=$movie['name'];?></div>
           <div style="display:flex">
-            <img src="img/<?=$movie['poster'];?>" style="width:80px;height:100px;">
+            <a href="javascript:location.href='index.php?do=intro&id=<?=$movie['id'];?>'"><img src="img/<?=$movie['poster'];?>" style="width:80px;height:100px;"></a>
             <div>分級:
               <img src="icon/<?=$movie['level'];?>.png" alt=""><?=$movie['level'];?><br>
-            上映日期:<?=$movie['year']."-".$movie['month']."-".$movie['day'];?>
+              上映日期:<?=$movie['year']."-".$movie['month']."-".$movie['day'];?>
             </div>
           </div>
           <div>

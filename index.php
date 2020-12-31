@@ -29,9 +29,10 @@
   </div>
   <div id="mm">
   <?php
-  //$do=isset($_GET['do'])?$_GET['do']:'main';
-  $do=isset($_GET['do'])??'main';
+  $do=isset($_GET['do'])?$_GET['do']:'main';
+  //$do=$_GET['do']??'main';
   $file='front/'.$do.".php";
+  //echo $file;
   if(file_exists($file)){
     include $file;
   }else{

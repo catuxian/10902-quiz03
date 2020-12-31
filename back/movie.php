@@ -52,12 +52,10 @@
 </div>  
 <script>
 function sw(idx,idy){
-    $.post('api/sw.php',{table:'movie',idx,idy},function(){
-        
+    $.post('api/sw.php',{table:'movie',idx,idy},function(){       
         location.reload()
     })
 }
-
 function del(table,id){
     $.post('api/del.php',{table,id},function(){
         location.reload()

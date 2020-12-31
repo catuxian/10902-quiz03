@@ -40,8 +40,12 @@
         </tr>
         <tr>
             <td style="vertical-align:top;text-align:right">劇情簡介</td>
-            <td><textarea name="intor"  style="width:98%;height:60px"></textarea>
+            <td><textarea name="intro"  style="width:98%;height:60px"></textarea>
             </td>
         </tr>
     </table>
+    <div class="ct">
+        <input type="submit" value="新增"> <input type="reset" value="重置">
+    
+    </div>
 </form>

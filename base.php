@@ -4,6 +4,7 @@ session_start();
 
 
 $Poster=new DB('poster');
+$Movie=new DB('movie');
 
 class DB{
     protected $dsn="mysql:host=localhost;dbname=db77;charset=utf8";
@@ -98,7 +99,7 @@ class DB{
             $sql="insert into $this->table (`".implode("`,`",array_keys($arg))."`) values('".implode("','",$arg)."')";
 
         }
-       
+        echo $sql;
         return $this->pdo->exec($sql);
     }
     function q($sql){

@@ -124,8 +124,9 @@ margin:auto;
 
         let t=setInterval('ani()', 2500);
 
-        function ani(){
-
+        //ani函式可以ani() 及 ani(next)的方式來使用
+        function ani(next){
+          
           //取得目前正在顯示中的海報
           let now=$(".po:visible")
 
@@ -133,16 +134,19 @@ margin:auto;
           let ani=$(now).data('ani');
 
           //取得目前正在顯示中的海報的下一張海報
-          let next
 
           //判斷目前正在顯示中的海報是否有下一張海報
-          if($(now).next().length){  
-            next=$(now).next()
-          }else{
-
-          //如果沒有下一張海報,則取得第一張海報
-            next=$("#p0")
+          if(next==undefined){
+            if($(now).next().length){  
+              next=$(now).next()
+            }else{
+              
+              //如果沒有下一張海報,則取得第一張海報
+              next=$("#p0")
+            }
           }
+          
+
           /* console.log(typeof(ani)) */
           switch(ani){
             case 1:
@@ -166,6 +170,26 @@ margin:auto;
           }
 
         }
+
+        //按鈕事件，切換海報並有轉場效果
+        $(".btn").on("click",function(){
+          let id=$(this).attr('id').replace("b","p");
+          //$(".po").hide();
+          
+          ani($("#"+id));
+          
+        })
+
+
+        //當滑鼠移入按鈕區時暫停動畫,移出時繼續動畫
+        $(".list").hover(
+          function(){
+            clearInterval(t)
+          },
+          function(){
+            t=setInterval('ani()',2500)
+          }
+        )
 
       </script>
 

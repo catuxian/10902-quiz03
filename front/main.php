@@ -37,10 +37,11 @@ margin:auto;
   height:100px;
   text-align:center;
   flex-shrink:0;
+  position:relative;
+  font-size:12px;
 }
 .btn img{
   width:70px;
-
 }
 
 .arrow{
@@ -108,11 +109,13 @@ margin:auto;
               p--;
             }
           }
-          
-          $(".btn").hide();
+
+           $(".btn").animate({right:p*80})
+
+/*           $(".btn").hide();
             for(i=p;i<p+4;i++){
               $('#b'+i).show()
-            }
+            } */
         })
 
 
@@ -140,7 +143,7 @@ margin:auto;
           //如果沒有下一張海報,則取得第一張海報
             next=$("#p0")
           }
-          console.log(typeof(ani))
+          /* console.log(typeof(ani)) */
           switch(ani){
             case 1:
               //淡入淡出

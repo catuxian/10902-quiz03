@@ -13,17 +13,15 @@
       <h1>院線片清單</h1>
       <div class="rb tab" style="width:95%;display:flex;flex-wrap:wrap">
       <?php
-      
+      $today=date("Y-m-d");
+      $startDate=date("Y-m-d",strtotime("-2 days",strtotime($today)));
 
 
-      $movies=$Movie->all(['sh'=>1]," order by rank");
+      $movies=$Movie->all(['sh'=>1]," && `ondate` between '$startDate' and '$today' order by rank");
+    //$movies=$Movie->all(['sh'=>1]," && `ondate` >=   '$startDate' && `ondate` <= '$today' order by rank");
       
       foreach($movies as $movie){
-        $date=strtotime($movie['year']."-".$movie['month']."-".$movie['day']);
-        $today=strtotime(date("Y-m-d"));
-/*         echo $date."-". strtotime($date)."<br>";
-        echo $today."-".strtotime($today)."<br>"; */
-        if($date<=$today && $date>=strtotime("-2 days",$today)){
+
        ?>   
       <div style="width:48%;border:1px solid #ccc;margin:0.5%">
           <div>片名:<?=$movie['name'];?></div>
@@ -41,7 +39,7 @@
       
       </div>
       <?php
-        } 
+      
       }
     ?>
         <div class="ct"> </div>

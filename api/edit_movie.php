@@ -2,6 +2,7 @@
 include_once "../base.php";
 
 $movie=$Movie->find($_POST['id']);
+//print_r($movie);
 
 if(!empty($_FILES['trailer']['tmp_name'])){
     $movie['trailer']=$_FILES['trailer']['name'];
@@ -24,6 +25,8 @@ foreach($movie as $key => $value){
         }
     }
 }
+
+//print_r($_POST);
 
 $Movie->save($movie);
 

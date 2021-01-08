@@ -48,24 +48,34 @@
         let t=setInterval('ani()', 2500);
 
         function ani(){
+
+          //取得目前正在顯示中的海報
           let now=$(".po:visible")
+
+          //取得目前正在顯示中的海報的轉場效果
           let ani=$(now).data('ani');
+
+          //取得目前正在顯示中的海報的下一張海報
           let next
+
+          //判斷目前正在顯示中的海報是否有下一張海報
           if($(now).next().length){  
             next=$(now).next()
           }else{
+
+          //如果沒有下一張海報,則取得第一張海報
             next=$("#p0")
           }
           console.log(typeof(ani))
           switch(ani){
             case 1:
               //淡入淡出
-              
               $(now).fadeOut(1000)
               $(next).fadeIn(1000)
             break;
             case 2:
             //滑入滑出
+            //利用call back函式在滑出動作完成後才進行滑入的動畫
               $(now).slideUp(1000,function(){
                 $(next).slideDown(1000)
               })

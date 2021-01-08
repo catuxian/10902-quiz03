@@ -1,3 +1,11 @@
+<style>
+.ct a{
+  text-decoration:none;
+}
+.ct a:hover{
+  text-decoration:underline;
+}
+</style>
 <div class="half" style="vertical-align:top;">
       <h1>預告片介紹</h1>
       <div class="rb tab" style="width:95%;">
@@ -16,9 +24,15 @@
       $today=date("Y-m-d");
       $startDate=date("Y-m-d",strtotime("-2 days",strtotime($today)));
 
+      $total=$Movie->count(['sh'=>1]," && `ondate` between '$startDate' and '$today'");
+      $div=4;
+      $pages=ceil($total/$div);
+      $now=$_GET['p']??1;
+      //$now=(isset($_GET['p']))?$_GET['p']:1;
+      $start=($now-1)*$div;
 
-      $movies=$Movie->all(['sh'=>1]," && `ondate` between '$startDate' and '$today' order by rank");
-    //$movies=$Movie->all(['sh'=>1]," && `ondate` >=   '$startDate' && `ondate` <= '$today' order by rank");
+      $movies=$Movie->all(['sh'=>1]," && `ondate` between '$startDate' and '$today' order by rank limit $start,$div");
+     //$movies=$Movie->all(['sh'=>1]," && `ondate` >=   '$startDate' && `ondate` <= '$today' order by rank");
       
       foreach($movies as $movie){
 
@@ -34,7 +48,7 @@
           </div>
           <div>
             <button onclick="javascript:location.href='index.php?do=intro&id=<?=$movie['id'];?>'">劇情簡介</button>
-            <button onclick="javascript:location.href='index.php?do=order&&id=<?=$movie['id'];?>'">線上訂票</button>
+            <button onclick="javascript:location.href='index.php?do=order&id=<?=$movie['id'];?>'">線上訂票</button>
           </div>
       
       </div>
@@ -42,6 +56,24 @@
       
       }
     ?>
-        <div class="ct"> </div>
       </div>
+        <div class="ct">
+
+        <?php
+          if(($now-1)>0){
+            echo "<a href='?p=".($now-1)."'> &lt; </a>";
+
+          }
+        
+         for($i=1;$i<=$pages;$i++){
+
+           echo " <a href='?p=$i'> $i </a> ";
+         }
+
+         if(($now+1)<=$pages){
+          echo "<a href='?p=".($now+1)."'> &gt; </a>";
+
+        }
+        ?>
+        </div>
     </div>

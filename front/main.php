@@ -5,16 +5,40 @@
 .ct a:hover{
   text-decoration:underline;
 }
+.posters{
+  width:200px;
+  height:260px;
+  margin:auto;
+  text-align:center;
+  position:relative;
+
+}
+.posters > div{
+  position:absolute;
+}
+.posters img{
+  width:100%;
+  
+}
 </style>
 <div class="half" style="vertical-align:top;">
       <h1>預告片介紹</h1>
       <div class="rb tab" style="width:95%;">
-        <div id="abgne-block-20111227">
-          <ul class="lists">
-          </ul>
-          <ul class="controls">
-          </ul>
-        </div>
+      <div class="posters">
+      <?php
+        $posters=$Poster->all(['sh'=>1]," order by rank");
+
+        foreach($posters as $key => $poster){
+          echo "<div>";
+          echo "<img src='img/{$poster['img']}'>";
+          echo "<span>{$poster['name']}</span>";
+          echo "</div>";
+        }
+
+      ?>
+
+      </div>
+      <div class="buttons"></div>
       </div>
     </div>
     <div class="half">

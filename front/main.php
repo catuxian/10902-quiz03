@@ -29,7 +29,7 @@
         $posters=$Poster->all(['sh'=>1]," order by rank");
 
         foreach($posters as $key => $poster){
-          echo "<div>";
+          echo "<div class='po' id='p{$key}' data-ani='{$poster['ani']}'>";
           echo "<img src='img/{$poster['img']}'>";
           echo "<span>{$poster['name']}</span>";
           echo "</div>";
@@ -41,6 +41,51 @@
       <div class="buttons"></div>
       </div>
     </div>
+      <script>
+        $(".po").hide();
+        $("#p0").show();
+        let pos=$(".po").length;
+        let t=setInterval('ani()', 2500);
+
+        function ani(){
+          let now=$(".po:visible")
+          let ani=$(now).data('ani');
+          let next
+          if($(now).next().length){  
+            next=$(now).next()
+          }else{
+            next=$("#p0")
+          }
+          console.log(typeof(ani))
+          switch(ani){
+            case 1:
+              //淡入淡出
+              
+              $(now).fadeOut(1000)
+              $(next).fadeIn(1000)
+            break;
+            case 2:
+            //滑入滑出
+              $(now).slideUp(1000,function(){
+                $(next).slideDown(1000)
+              })
+            break;
+            case 3:
+            //縮放
+              $(now).hide(1000)
+              $(next).show(1000)
+            break;
+
+          }
+
+        }
+
+      </script>
+
+
+
+
+
     <div class="half">
       <h1>院線片清單</h1>
       <div class="rb tab" style="width:95%;display:flex;flex-wrap:wrap">

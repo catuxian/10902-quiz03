@@ -16,8 +16,41 @@ $session=$_GET['session'];
 
 
 ?>
-<div style="margin:auto;width:540px;height:370px;background:url('icon/03D04.png')">
+<style>
+.seat{
+    width:63px;
+    height:85px;
+    text-align:center;
+    position:relative;
+}
+.booked{
+    background:url('icon/03D03.png') center no-repeat;
+}
+.empty{
+    background:url('icon/03D02.png') center no-repeat;
+}
 
+.chk{
+    display:block;
+    position:absolute;
+    bottom:5px;
+    right:5px;
+}
+</style>
+
+<div style="margin:auto;width:540px;height:370px;background:url('icon/03D04.png') no-repeat;padding-top:20px">
+    <div style="width:315px;height:340px;margin:auto;display:flex;flex-wrap:wrap">
+    <?php
+    for($i=0;$i<20;$i++){
+        echo "<div class='seat empty'>";
+        echo (floor($i/5)+1)."排".($i%5+1)."號";
+        echo "<input type='checkbox' value='$i' class='chk'>";
+        echo "</div>";
+    }
+
+
+    ?>
+    </div>
 
 </div>
 

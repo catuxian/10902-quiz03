@@ -3,7 +3,7 @@
     <table style="width:400px;margin:auto">
         <tr>
             <td width="15%">電影：</td>
-            <td><select name="movie" id="movie" style="width:98%"></select></td>
+            <td><select name="movie" id="movie" style="width:98%" onchange="getDays()"></select></td>
         </tr>
         <tr>
             <td>日期：</td>
@@ -24,7 +24,7 @@
 <script>
 /*
  //前端js取得url參數的做法
- 
+
  let query={};
 document.location.search.replace("?","").split("&").forEach(function(item,idx){
     query[item.split("=")[0]]=item.split("=")[1]
@@ -40,6 +40,8 @@ if(query.id==undefined){
 //isset($_GET['id'])?$_GET['id']:'';
 getMovies(<?=$_GET['id']??'';?>);
 
+//$("#movie").on("change",()=>{getDays()})
+
 function getMovies(id){
     let movie;
     if(id!=undefined){
@@ -50,9 +52,20 @@ function getMovies(id){
     console.log(movie)
     $.get("api/get_movies.php",{movie},function(movies){
         $("#movie").html(movies)
+        getDays()
     })
 
 }
 
+function getDays(){
 
+    //取得目前電影選單選中的電影id
+    let movie=$("#movie").val()
+
+    //把電影id傳給後台去計算可以訂票的日期
+    $.get("api/get_days.php",{movie},function(days){
+        $("#date").html(days)
+    })
+
+}
 </script>

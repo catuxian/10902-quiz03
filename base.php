@@ -1,10 +1,19 @@
 <?php
 date_default_timezone_set("Asia/Taipei");
 session_start();
-
+$sess=[
+    1=>"14:00~16:00",
+    2=>"16:00~18:00",
+    3=>"18:00~20:00",
+    4=>"20:00~22:00",
+    5=>"22:00~24:00",
+    
+    ];
 
 $Poster=new DB('poster');
 $Movie=new DB('movie');
+$Orders=new DB('orders');
+
 
 class DB{
     protected $dsn="mysql:host=localhost;dbname=db77;charset=utf8";
@@ -99,7 +108,7 @@ class DB{
             $sql="insert into $this->table (`".implode("`,`",array_keys($arg))."`) values('".implode("','",$arg)."')";
 
         }
-        echo $sql;
+        //echo $sql;
         return $this->pdo->exec($sql);
     }
     function q($sql){
